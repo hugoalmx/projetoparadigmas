@@ -10,7 +10,8 @@
 <h2>Users</h2>
 <ul>
     @foreach ($users as $user)
-      <li>{{$user->name}} | <a href="{{ route('users.edit',[ 'user' => $user->id]) }}"> Edit </a> | <a href="{{route('users.show', ['user' => $user->id])}}"> </a></a></li>
+      <li>{{$user->name}} | <a href="{{ route('users.edit',[ 'user' => $user->id]) }}"> Editar </a> |  <a>
+      <a href="{{route('users.show', ['user' => $user->id])}}"> Excluir </a></a></li>
     @endforeach
 </ul>
 
