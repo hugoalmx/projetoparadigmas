@@ -1,5 +1,7 @@
-@extends('layout.layout')
+@extends('master')
 
-@section('container')
+@section('content')
+
+<h2>Home</h2>
 
 @endsection
