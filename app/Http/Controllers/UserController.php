@@ -27,12 +27,23 @@ class UserController extends Controller
         return view('user_create');
     }
     
+    public function getUserId($userEmail)
+    {
+        // Busca o usuário (lead) na tabela de usuários pelo e-mail
+        $user = User::where('email', $userEmail)->first();
+
+        // Verifica se o lead foi encontrado e retorna seu ID
+        if ($user) {
+            return $user->id;
+        } else {
+            return null; // ou você pode lançar uma exceção, dependendo do seu caso
+        }
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-
         $created = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -48,7 +59,6 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'Erro na criação!');
     }
 
-    
     /**
      * Display the specified resource.
      */

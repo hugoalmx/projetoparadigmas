@@ -20,12 +20,7 @@ return new class extends Migration
             $table->text('descricao_interacao');
             $table->timestamps();
         });
-        Schema::table('registros', function (Blueprint $table) {
-            $table->index('user_id');
-    });
-
-    
-
+       
 }
     /**
      * Reverse the migrations.

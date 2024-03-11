@@ -15,7 +15,7 @@
           E-mail: {{ $user->email }} |
           Empresa: {{ $user->empresa }} |
           CNPJ: {{ $user->cnpj }} |
-          Categiria: {{ $user->tags }} |
+          Categoria: {{ $user->tags }} |
           É Cliente? {{ $user->cliente ? 'Sim' : 'Não' }} |
 
       <a href="{{ route('users.edit',[ 'user' => $user->id]) }}"> Editar </a> |  <a>

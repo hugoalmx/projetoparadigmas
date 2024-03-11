@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('tags')->nullable();
             $table->boolean('cliente')->default(0);
-            $table->string('tipo_interacao')->nullable();
-            $table->timestamp('data_interacao')->nullable();
-            $table->text('descricao_interacao')->nullable();
             $table->timestamps();
         });
 
