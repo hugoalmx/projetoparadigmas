@@ -2,7 +2,8 @@
 
 @section('content')
 
-<h2>Criar Lead</h2>
+<h2>Adicionar Registro</h2>
+
 
 @if (session()->has('message'))
     {{ session() -> get('message')}}
@@ -10,15 +11,12 @@
 @endif
 
 
+<form action="{{ route('registros.store')}}" method="post">
 
-<form action="{{route('users.store')}}" method="post">
 @csrf
-    <input type="text" name="name" placeholder="Nome">
-    <input type="text" name="email" placeholder="Email">
-    <input type="text" name="empresa" placeholder="Empresa">
-    <input type="text" name="cnpj" placeholder="CNPJ">
-    <input type="text" name="tags" placeholder="Categoria">
-    <input type="text" name="password" placeholder="Senha">
+    <input type="text" name="tipo_interacao" placeholder="Meio Utilizado">
+    <input type="datetime-local" name="data_interacao" placeholder="Data do contato">
+    <input type="text" name="descricao_interacao" placeholder="Descrição">
     <button type="submit">Criar</button>
 </form>
 

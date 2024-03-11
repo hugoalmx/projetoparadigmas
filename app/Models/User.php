@@ -20,7 +20,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'empresa',
+        'cnpj',
+        'tags',
         'password',
+        'tipo_interacao',
+        'data_interacao',
+        'descricao',
     ];
 
     /**
@@ -42,4 +48,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function Registros(){
+        return $this->hasMany(Registro::class);
+
+    }
 }

@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         return view('user_create');
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
@@ -36,6 +36,9 @@ class UserController extends Controller
         $created = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'empresa' => $request->input('empresa'),
+            'cnpj' => $request->input('cnpj'),
+            'tags' => $request->input('tags'),
             'password' => password_hash($request->input('password'), PASSWORD_DEFAULT),
         ]);
 
@@ -45,6 +48,7 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'Erro na criação!');
     }
 
+    
     /**
      * Display the specified resource.
      */
@@ -83,4 +87,6 @@ class UserController extends Controller
 
        return redirect()->route('users.index');
     }
+
 }
+

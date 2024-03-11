@@ -11,13 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leads', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->string('cpf');
+            $table->string('empresa')->nullable();
+            $table->string('cnpj')->nullable();
+            $table->string('password')->nullable();
+            $table->string('tags')->nullable();
+            $table->boolean('cliente')->default(0);
+            $table->string('tipo_interacao')->nullable();
+            $table->timestamp('data_interacao')->nullable();
+            $table->text('descricao_interacao')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
