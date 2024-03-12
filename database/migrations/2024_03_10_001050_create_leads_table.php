@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('leads', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); // Adicionando a coluna user_id
+            $table->foreign('user_id')->references('id')->on('users'); // Definindo a chave estrangeira
             $table->string('name');
             $table->string('email')->unique();
             $table->string('empresa')->nullable();
             $table->string('cnpj')->nullable();
             $table->string('password')->nullable();
-            $table->string('tags')->nullable();
+            $table->string('categoria')->nullable();
             $table->boolean('cliente')->default(0);
             $table->timestamps();
         });
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('leads');
     }
 };

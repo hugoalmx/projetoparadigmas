@@ -13,6 +13,7 @@
 <table>
     <thead>
         <tr>
+            <th>Nome do Lead</th>
             <th>ID do lead</th>
             <th>Tipo de Interação</th>
             <th>Data de Interação</th>
@@ -25,6 +26,7 @@
 
     @foreach ($registros as $registro)
             <tr>
+                <td>{{ $registro->lead->name }}</td>
                 <td>{{ $registro->user_id }}</td>
                 <td>{{ $registro->tipo_interacao }}</td>
                 <td>{{ $registro->data_interacao }}</td>
@@ -44,7 +46,7 @@
 </table>
 
 <!-- Botão para ir para a página de usuários -->
-<a href="{{ route('users.index') }}" class="btn btn-primary">Ver Usuários</a>
+<a href="{{ route('leads.index') }}" class="btn btn-primary">Ver Usuários</a>
 <!-- Botão para ir para a página principal -->
 <a href="{{ route('home') }}" class="btn btn-primary">Página Principal</a>
 

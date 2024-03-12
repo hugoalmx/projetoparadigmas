@@ -13,7 +13,7 @@ class Registro extends Model
         'tipo_interacao',
         'data_interacao',
         'descricao_interacao',
-        'user_id',
+        'lead_id',
         
         ];
 
@@ -21,8 +21,8 @@ class Registro extends Model
 
     ];
 
-    public function user(){
-        return $this->belongsTo(User::Class);
+    public function lead(){
+        return $this->belongsTo(Lead::Class);
     }
 
     }

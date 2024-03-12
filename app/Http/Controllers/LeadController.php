@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Lead;
 
-class UserController extends Controller
+class LeadController extends Controller
 {
 
-    public readonly User $user;
+    public readonly Lead $lead;
     public function __construct(){
-    $this->user = new User();
+    $this->lead = new Lead();
     }
 
     public function index()
     {
-        $users = $this->user->all();
-        return view('users', [ 'users' => $users]);
+        $leads = $this->lead->all();
+        return view('leads', [ 'leads' => $leads]);
     }
 
     /**
@@ -24,33 +24,22 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user_create');
+        return view('lead_create');
     }
-    
-    public function getUserId($userEmail)
-    {
-        // Busca o usuário (lead) na tabela de usuários pelo e-mail
-        $user = User::where('email', $userEmail)->first();
 
-        // Verifica se o lead foi encontrado e retorna seu ID
-        if ($user) {
-            return $user->id;
-        } else {
-            return null; // ou você pode lançar uma exceção, dependendo do seu caso
-        }
-    }
+    
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $created = User::create([
+        $created = Lead::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'empresa' => $request->input('empresa'),
             'cnpj' => $request->input('cnpj'),
             'tags' => $request->input('tags'),
-            'password' => password_hash($request->input('password'), PASSWORD_DEFAULT),
         ]);
 
         if ($created) {
@@ -62,17 +51,17 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(user $user)
+    public function show(Lead $lead)
     {
-        return view('user_show', ['user' => $user]);
+        return view('lead_show', ['lead' => $lead]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(Lead $lead)
     {
-        return view('user_edit', ['user' => $user]);
+        return view('lead_edit', ['lead' => $lead]);
     }
 
     /**
@@ -80,7 +69,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $updated = $this->user->where('id', $id) -> update($request->except(['_token', '_method']));
+        $updated = $this->lead->where('id', $id) -> update($request->except(['_token', '_method']));
 
         if ($updated) {
             return redirect()->back()->with('message', 'Alteração feita com sucesso!');
@@ -93,9 +82,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-       $this->user->where('id', $id) -> delete();
+$this->lead->where('id', $id) -> delete();
 
-       return redirect()->route('users.index');
+return redirect()->route('leads.index');
     }
 
 }

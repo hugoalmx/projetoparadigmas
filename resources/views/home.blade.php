@@ -5,7 +5,31 @@
 <h2>Home</h2>
 
 <!-- Botão para ir para a página de usuários -->
-<a href="{{ route('users.index') }}" class="btn btn-primary">Ver Usuários</a>
+<a href="{{ route('leads.index') }}" class="btn btn-primary">Ver Usuários</a>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Início</a>
+                </li>
+            </ul>
+            <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit">Sair</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1> Bem-vindo,
+</div>
 
 @endsection
-

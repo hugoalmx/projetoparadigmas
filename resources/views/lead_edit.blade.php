@@ -8,21 +8,21 @@
     {{ session() -> get('message')}}
 
 @endif
-<form action="{{route('users.update', ['user' => $user->id]) }}" method="post">
+<form action="{{route('leads.update', ['lead' => $lead->id]) }}" method="post">
 @csrf
 <input type="hidden" name="_method" value="PUT">
-    <input type="text" name="name" value="{{ $user -> name}}">
-    <input type="text" name="email" value="{{ $user -> email}}">
-    <input type="text" name="empresa" value="{{ $user -> empresa}}">
-    <input type="text" name="cnpj" value="{{ $user -> cnpj}}">
-    <input type="text" name="tags" value="{{ $user -> tags}}">
+    <input type="text" name="name" value="{{ $lead -> name}}">
+    <input type="text" name="email" value="{{ $lead -> email}}">
+    <input type="text" name="empresa" value="{{ $lead -> empresa}}">
+    <input type="text" name="cnpj" value="{{ $lead -> cnpj}}">
+    <input type="text" name="tags" value="{{ $lead -> tags}}">
     <button type="submit">Editar</button>
 </form>
 </form>
 
-@if ($user->cliente)
+@if ($lead->cliente)
     <p>Este usuário é um cliente.</p>
-    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
+    <form action="{{ route('leads.update', ['lead' => $lead->id]) }}" method="post">
         @csrf
         @method('PATCH')
         <input type="hidden" name="cliente" value="0">
@@ -30,7 +30,7 @@
     </form>
 @else
     <p>Este usuário não é um cliente.</p>
-    <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
+    <form action="{{ route('leads.update', ['lead' => $lead->id]) }}" method="post">
         @csrf
         @method('PATCH')
         <input type="hidden" name="cliente" value="1">
@@ -40,7 +40,7 @@
 </form>
 
 <!-- Botão para ir para a página de usuários -->
-<a href="{{ route('users.index') }}" class="btn btn-primary">Ver Usuários</a>
+<a href="{{ route('leads.index') }}" class="btn btn-primary">Ver Leads</a>
 
 
 @endsection

@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Adicionando a coluna user_id
-            $table->foreign('user_id')->references('id')->on('users'); // Definindo a chave estrangeira
+            $table->unsignedBigInteger('lead_id'); // Adicionando a coluna user_id
+            $table->foreign('lead_id')->references('id')->on('leads'); // Definindo a chave estrangeira
             $table->string('tipo_interacao');
             $table->timestamp('data_interacao')->nullable();
             $table->text('descricao_interacao');
             $table->timestamps();
         });
-       
 }
     /**
      * Reverse the migrations.

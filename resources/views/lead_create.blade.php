@@ -11,7 +11,7 @@
 
 
 
-<form action="{{route('users.store')}}" method="post">
+<form action="{{route('leads.store')}}" method="post">
 @csrf
     <input type="text" name="name" placeholder="Nome">
     <input type="text" name="email" placeholder="Email">
@@ -23,7 +23,7 @@
 </form>
 
 <!-- Botão para ir para a página de usuários -->
-<a href="{{ route('users.index') }}" class="btn btn-primary">Ver Usuários</a>
+<a href="{{ route('leads.index') }}" class="btn btn-primary">Ver Usuários</a>
 <!-- Botão para ir para a página principal -->
 <a href="{{ route('home') }}" class="btn btn-primary">Página Principal</a>
 @endsection
