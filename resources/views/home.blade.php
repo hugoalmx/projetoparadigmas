@@ -13,12 +13,12 @@
 
     @keyframes fadeIn {
         from {
-            opacity: 0; 
+            opacity: 0;
         to {
             opacity: 1;
         }
     }
-
+}
     h1 {
         font-weight: bold; 
         margin-top: 20px;
