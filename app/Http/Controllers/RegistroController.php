@@ -24,23 +24,22 @@ class RegistroController extends Controller
     public function create(Request $request)
 {   
     $registros = $this->registro->all();
-    $leadId = $request->query('lead'); // Obtém o valor do parâmetro 'lead' da URL
+    $leadId = $request->query('lead');
     
-    // Verifica se o ID do usuário foi passado na URL
+ 
     if ($leadId) {
-        // Busca o usuário pelo ID
+       
         $lead = Lead::find($leadId);
 
-        // Verifica se o usuário foi encontrado
         if ($lead) {
-            // Retorna a visão 'registros_create' passando o usuário encontrado e seu ID
+    
             return view('registros_create', ['lead' => $lead, 'leadId' => $leadId, 'registros' => $registros]);
         } else {
-            // Se o usuário não for encontrado, redireciona de volta com uma mensagem de erro
+      
             return redirect()->back()->with('error', 'Lead não encontrado.');
         }
     } else {
-        // Se o parâmetro 'lead' não estiver presente na URL, redirecione de volta com uma mensagem de erro
+  
         return redirect()->back()->with('error', 'O parâmetro "lead" não foi fornecido na URL.');
     }
 }
@@ -77,13 +76,12 @@ class RegistroController extends Controller
 
     public function show($leadId)
     {
-        // Busca todos os registros associados ao lead_id
+       
         $registros = Registro::where('lead_id', $leadId)->get();
-        
-        // Obtém o usuário pelo ID
+       
         $lead = Lead::findOrFail($leadId);
     
-        // Retorna a view 'registros_show' passando os registros e o usuário associado
+  
         return view('registros_show', compact('registros', 'lead'));
     }
 
@@ -104,21 +102,17 @@ class RegistroController extends Controller
 
     public function update(Request $request, $leadId, $registroId)
     {
-        // Primeiro, localize o registro com base no $leadId e $registroId
+        
         $registro = Registro::where('lead_id', $leadId)->where('id', $registroId)->first();
     
-        // Verifique se o registro foi encontrado
         if (!$registro) {
             return redirect()->back()->with('error', 'Registro não encontrado');
         }
     
-        // Atualize os dados do registro
         $registro->update($request->except(['_token', '_method']));
     
-        // Flash a mensagem de sucesso na sessão
         session()->flash('success', 'Registro atualizado com sucesso!');
     
-        // Redirecione de volta para a página de edição
         return redirect()->back();
     }
     
@@ -126,16 +120,13 @@ class RegistroController extends Controller
 
     public function destroy($leadId, $registroId)
     {
-        // Encontrar o registro a ser excluído
+        
         $registro = Registro::findOrFail($registroId);
     
-        // Encontrar o Lead associado ao registro
         $lead = Lead::findOrFail($leadId);
     
-        // Excluir o registro
         $registro->delete();
-    
-        // Redirecionar de volta para a página de registros do Lead
+
         return redirect()->route('registros.index', ['leadId' => $leadId])->with('success', 'Registro excluído com sucesso');
     }
 }

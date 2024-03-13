@@ -12,11 +12,7 @@ class Lead extends Model
 {
     use  HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+   
     protected $fillable = [
         'name',
         'email',
@@ -28,26 +24,18 @@ class Lead extends Model
         
     ];
 
-       /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    
     protected $hidden = [
         'password',
         'remember_token',
     ];
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+  
     protected $casts = [
         'email_verified_at' => 'datetime',
            ];
 
 
-             // Mutator para hashear a senha antes de salvar no banco de dados
+           
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);

@@ -42,9 +42,9 @@
     </tbody>
 </table>
 
-<!-- Botão para ir para a página de usuários -->
+
 <a href="{{ route('leads.index') }}" class="btn btn-primary">Ver Usuários</a>
-<!-- Botão para ir para a página principal -->
+
 <a href="{{ route('home.index') }}" class="btn btn-primary">Página Principal</a>
 
 @endsection

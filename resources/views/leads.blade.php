@@ -42,7 +42,6 @@
         </table>
     </div>
 
-    <!-- Barra de pesquisa e filtros -->
     <form action="{{ route('leads.index') }}" method="get">
         <div class="row">
             <div class="col-md-6">

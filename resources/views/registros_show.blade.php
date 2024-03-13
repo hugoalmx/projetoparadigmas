@@ -39,8 +39,7 @@
                                 <div class="btn-group" role="group">
                                     
                                         <a href="{{ route('registros.edit', ['leadId' => $lead->id, 'registroId' => $registro->id]) }}">Editar</a>
-                                   
-                                    <!-- Formulário para exclusão do registro -->
+                                    
                                     <form action="{{ route('registros.destroy', ['leadId' => $lead->id, 'registroId' => $registro->id]) }}" method="post">
 
                     @csrf

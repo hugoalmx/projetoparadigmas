@@ -85,7 +85,6 @@
     </div>
 </div>
 
-<!-- Botão para ir para a página de usuários -->
 <a href="{{ route('leads.index') }}" class="btn btn-primary mt-3">Ver Leads</a>
 
 @endsection
