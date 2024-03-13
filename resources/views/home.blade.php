@@ -5,30 +5,31 @@
 <style>
     body {
         background-color: #343a40; 
-        font-family: Arial, sans-serif; 
-        color: #ffffff;
+        font-family: Arial, sans-serif; /* Fonte Arial */
+        color: #ffffff; /* Cor do texto branco */
         opacity: 0;
         animation: fadeIn 1s forwards;
     }
 
     @keyframes fadeIn {
         from {
-            opacity: 0;
+            opacity: 0; /* Começa com opacidade 0 */
+        }
         to {
-            opacity: 1;
+            opacity: 1; /* Termina com opacidade 1 */
         }
     }
-}
+
     h1 {
-        font-weight: bold; 
-        margin-top: 20px;
-        text-align: center;
-        color: #6c757d;
+        font-weight: bold; /* Texto em negrito */
+        margin-top: 20px; /* Espaçamento superior */
+        text-align: center; /* Alinhamento central */
+        color: #6c757d; /* Cor do título cinza escuro */
     }
 
     .container {
-        max-width: 600px; 
-        margin: 0 auto; 
+        max-width: 600px; /* Define a largura máxima do conteúdo */
+        margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
         padding: 20px;
         background-color: #f8f9fa;
         border-radius: 8px;
