@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,10 +22,10 @@ class Lead extends Model
         'email',
         'empresa',
         'cnpj',
-        'tags',
-        'tipo_interacao',
-        'data_interacao',
-        'descricao',
+        'categoria',
+        'user_id',
+        'password',
+        
     ];
 
        /**
@@ -52,6 +53,10 @@ class Lead extends Model
         $this->attributes['password'] = Hash::make($value);
     }
     
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function Registros(){
         return $this->hasMany(Registro::class, 'lead_id');
 

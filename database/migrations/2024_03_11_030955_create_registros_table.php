@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('lead_id'); // Adicionando a coluna user_id
-            $table->foreign('lead_id')->references('id')->on('leads'); // Definindo a chave estrangeira
+            $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade'); // Definindo a chave estrangeira
             $table->string('tipo_interacao');
             $table->timestamp('data_interacao')->nullable();
-            $table->text('descricao_interacao');
+            $table->text('descricao_interacao')->nullable();
             $table->timestamps();
         });
 }

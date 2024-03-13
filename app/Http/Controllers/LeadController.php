@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Lead;
 
 class LeadController extends Controller
@@ -13,16 +14,36 @@ class LeadController extends Controller
     $this->lead = new Lead();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $leads = $this->lead->all();
-        return view('leads', [ 'leads' => $leads]);
+        $userId = Auth::id();
+    
+        $query = $this->lead->query()
+            ->where('user_id', $userId);
+    
+        // Aplicar filtro por cliente (Sim ou Não)
+        if ($request->filled('cliente')) {
+            $cliente = $request->input('cliente') == '1' ? true : false;
+            $query->where('cliente', $cliente);
+        }
+    
+        // Aplicar filtro por categoria
+        if ($request->filled('categoria')) {
+            $query->where('categoria', 'like', '%' . $request->input('categoria') . '%');
+        }
+    
+        // Adicione mais blocos semelhantes conforme necessário para outros campos de filtro
+    
+        $leads = $query->get();
+    
+        return view('leads', compact('leads'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('lead_create');
     }
@@ -34,18 +55,26 @@ class LeadController extends Controller
      */
     public function store(Request $request)
     {
-        $created = Lead::create([
+        if (auth()->check()) {
+            $user_id = auth()->user()->id;
+
+        if($user_id){
+        $criar = Lead::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'empresa' => $request->input('empresa'),
             'cnpj' => $request->input('cnpj'),
-            'tags' => $request->input('tags'),
+            'categoria' => $request->input('categoria'),
+            'user_id' => $user_id,
         ]);
+        
 
-        if ($created) {
+        if ($criar) {
             return redirect()->back()->with('message', 'Lead criado com sucesso!');
         }
         return redirect()->back()->with('message', 'Erro na criação!');
+    }
+    }
     }
 
     /**
@@ -82,7 +111,7 @@ class LeadController extends Controller
      */
     public function destroy(string $id)
     {
-$this->lead->where('id', $id) -> delete();
+       $this->lead->where('id', $id) -> delete();
 
 return redirect()->route('leads.index');
     }

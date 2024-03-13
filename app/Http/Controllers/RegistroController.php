@@ -48,6 +48,13 @@ class RegistroController extends Controller
 
     public function store(Request $request)
     {
+
+        $request->validate([
+            'tipo_interacao' => 'required',
+            'data_interacao' => 'required|date',
+            
+        ]);
+
         $leadId = $request->input('lead_id');
         
         if ($leadId) {
@@ -80,26 +87,55 @@ class RegistroController extends Controller
         return view('registros_show', compact('registros', 'lead'));
     }
 
-    public function edit(Registro $registro)
+    public function edit($leadId, $registroId)
+
     {
-        return view('registros_edit',compact('registro'));
+
+        $lead = Lead::findOrFail($leadId);
+
+        $registro = Registro::findOrFail($registroId);
+
+
+
+        return view('registros_edit', compact('lead', 'registro'));
+
     }
+    
 
-    public function update(Request $request, Registro $registro)
+    public function update(Request $request, $leadId, $registroId)
     {
-        $request->validate([
-            // Coloque aqui as validações necessárias para os campos do registro
-        ]);
-
-        $registro->update($request->all());
-
-        return redirect()->route('registros.index')->with('success','Registro atualizado com sucesso');
+        // Primeiro, localize o registro com base no $leadId e $registroId
+        $registro = Registro::where('lead_id', $leadId)->where('id', $registroId)->first();
+    
+        // Verifique se o registro foi encontrado
+        if (!$registro) {
+            return redirect()->back()->with('error', 'Registro não encontrado');
+        }
+    
+        // Atualize os dados do registro
+        $registro->update($request->except(['_token', '_method']));
+    
+        // Flash a mensagem de sucesso na sessão
+        session()->flash('success', 'Registro atualizado com sucesso!');
+    
+        // Redirecione de volta para a página de edição
+        return redirect()->back();
     }
+    
 
-    public function destroy(Registro $registro)
+
+    public function destroy($leadId, $registroId)
     {
+        // Encontrar o registro a ser excluído
+        $registro = Registro::findOrFail($registroId);
+    
+        // Encontrar o Lead associado ao registro
+        $lead = Lead::findOrFail($leadId);
+    
+        // Excluir o registro
         $registro->delete();
-
-        return redirect()->route('registros.index')->with('success','Registro excluído com sucesso');
+    
+        // Redirecionar de volta para a página de registros do Lead
+        return redirect()->route('registros.index', ['leadId' => $leadId])->with('success', 'Registro excluído com sucesso');
     }
 }

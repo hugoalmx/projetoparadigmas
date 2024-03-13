@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('empresa')->nullable();
             $table->string('cnpj')->nullable();
-            $table->string('password')->nullable();
             $table->string('categoria')->nullable();
             $table->boolean('cliente')->default(0);
             $table->timestamps();
