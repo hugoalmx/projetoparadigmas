@@ -1,69 +1,30 @@
+@extends('master')
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-        .container {
-            text-align: center;
-            max-width: 600px;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            color: #007bff;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #495057;
-            margin-bottom: 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bem-vindo ao Gerenciamento de Leads</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Bem-vindo ao Gerenciamento de Leads</h1>
-       
-        <a href="{{ route('register') }}" class="btn">Registre-se</a>
-        <a href="{{ route('login') }}" class="btn">Faça Login</a>
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header text-center">
+                <h1 class="card-title">Bem-vindo ao Gerenciamento de Leads</h1>
+            </div>
+            <div class="card-body text-center">
+                <p class="mb-4">Gerencie seus leads de forma eficiente com nosso sistema.</p>
+                <div class="d-grid gap-3">
+                    <a href="{{ route('register') }}" class="btn btn-primary">Cadastre-se</a>
+                    <a href="{{ route('login') }}" class="btn btn-secondary">Faça Login</a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 </body>
 </html>

@@ -33,10 +33,15 @@
                                 <label for="descricao_interacao">Descrição:</label>
                                 <input type="text" id="descricao_interacao" name="descricao_interacao" class="form-control" placeholder="Descrição" value="{{ $registro->descricao_interacao }}" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="submit" class="btn btn-primary mt-3">Salvar</button>
                         </form>
-                        <a href="{{ route('leads.index') }}" class="btn btn-secondary">Ver Usuários</a>
-                        <button onclick="window.history.back();" class="btn btn-secondary">Voltar para o registro</button>
+                        <div class="d-flex justify-content-center gap-2 mt-3">
+                        <a href="{{ route('registros.index', ['leadId' => $lead->id]) }}" class="btn btn-primary mt-3">Ver Registros</a>
+                        <a href="{{ route('leads.index') }}" class="btn btn-secondary mt-3">Ver Leads</a>
+                        
+                        </div>
+                    
+
 
                     @else
                         <p>Registro não encontrado.</p>
@@ -48,10 +53,5 @@
 
 </div>
 
-<div class="row justify-content-center mt-3">
-    <div class="col-lg-4">
-        <p>Já tem conta? <a href="{{ route('login') }}">Faça Login</a></p>
-    </div>
-</div>
 
 @endsection
